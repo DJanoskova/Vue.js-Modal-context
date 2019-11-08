@@ -40,18 +40,18 @@ export default {
         props: { text: 'Everything is working great!', type: 'success' }
       })
     },
-    handleSignIn () {
-      ModalBus.$emit('open', { component: SignInForm, title: 'New group' })
-    },
-    handleClosableInside () {
-      ModalBus.$emit('open', { component: ClosableInside, title: 'Close dialog from component' })
-    },
     handleDangerAlert () {
       const props = {
         type: 'error',
         text: 'The server returned 500 again! omg!'
       }
       ModalBus.$emit('open', { component: Alert, title: 'An error has occured', props })
+    },
+    handleSignIn () {
+      ModalBus.$emit('open', { component: SignInForm, title: 'New user' })
+    },
+    handleClosableInside () {
+      ModalBus.$emit('open', { component: ClosableInside, title: 'Close dialog from component' })
     }
   }
 }
