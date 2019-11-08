@@ -51,7 +51,7 @@ export default {
       ModalBus.$emit('open', { component: ClosableInside, title: 'Close dialog from component' })
     },
     openSignIn () {
-      ModalBus.$emit('open', { component: SignInForm, title: 'New user' })
+      ModalBus.$emit('open', { component: SignInForm, title: 'New user', closeOnClick: false })
     }
   }
 }
