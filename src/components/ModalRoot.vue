@@ -31,8 +31,6 @@ export default {
   methods: {
     handleClose () {
       this.component = null
-      this.title = ''
-      this.props = null
     },
     handleKeyup (e) {
       if (e.keyCode === 27) this.handleClose()
