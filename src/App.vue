@@ -1,16 +1,16 @@
 <template>
   <div id="app">
     <div class="content">
-      <Button @click="handleSuccessAlert" class="mr-2">
+      <Button @click="openSuccessAlert" class="mr-2">
         Success alert
       </Button>
-      <Button @click="handleDangerAlert" class="mr-2">
+      <Button @click="openDangerAlert" class="mr-2">
         Danger alert
       </Button>
-      <Button @click="handleClosableInside" class="mr-2">
+      <Button @click="openClosableInside" class="mr-2">
         Close from inside
       </Button>
-      <Button @click="handleSignIn">
+      <Button @click="openSignIn">
         Sign in form
       </Button>
     </div>
@@ -34,24 +34,24 @@ export default {
     ModalRoot
   },
   methods: {
-    handleSuccessAlert () {
+    openSuccessAlert () {
       ModalBus.$emit('open', {
         component: Alert,
         props: { text: 'Everything is working great!', type: 'success' }
       })
     },
-    handleDangerAlert () {
+    openDangerAlert () {
       const props = {
         type: 'error',
         text: 'The server returned 500 again! omg!'
       }
       ModalBus.$emit('open', { component: Alert, title: 'An error has occured', props })
     },
-    handleSignIn () {
-      ModalBus.$emit('open', { component: SignInForm, title: 'New user' })
-    },
-    handleClosableInside () {
+    openClosableInside () {
       ModalBus.$emit('open', { component: ClosableInside, title: 'Close dialog from component' })
+    },
+    openSignIn () {
+      ModalBus.$emit('open', { component: SignInForm, title: 'New user' })
     }
   }
 }
