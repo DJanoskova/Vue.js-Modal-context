@@ -37,7 +37,7 @@ export default {
       })
     },
     handleSignIn () {
-      ModalBus.$emit('open', { component: SignInForm, title: 'New group' })
+      ModalBus.$emit('open', { component: SignInForm, title: 'New group', closeOnClick: false })
     },
     handleDangerAlert () {
       const props = {

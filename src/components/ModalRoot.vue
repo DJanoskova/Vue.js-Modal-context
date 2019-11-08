@@ -1,5 +1,5 @@
 <template>
-  <Modal :isOpen="!!component" :title="title" @onClose="handleClose">
+  <Modal :isOpen="!!component" :title="title" @onClose="handleOutsideClick">
     <component :is="component" @onClose="handleClose" v-bind="props" />
   </Modal>
 </template>
@@ -14,14 +14,16 @@ export default {
     return {
       component: null,
       title: '',
-      props: null
+      props: null,
+      closeOnClick: true
     }
   },
   created () {
-    ModalBus.$on('open', ({ component, title = '', props = null }) => {
+    ModalBus.$on('open', ({ component, title = '', props = null, closeOnClick = true }) => {
       this.component = component
       this.title = title
       this.props = props
+      this.closeOnClick = closeOnClick
     })
     document.addEventListener('keyup', this.handleKeyup)
   },
@@ -29,15 +31,20 @@ export default {
     document.removeEventListener('keyup', this.handleKeyup)
   },
   methods: {
+    handleOutsideClick () {
+      if (!this.closeOnClick) return
+      this.handleClose()
+    },
     handleClose () {
       this.component = null
       this.title = ''
       this.props = null
+      this.closeOnClick = true
     },
     handleKeyup (e) {
       if (e.keyCode === 27) this.handleClose()
     }
   },
-  components: { Modal },
+  components: { Modal }
 }
 </script>
