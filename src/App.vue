@@ -7,6 +7,9 @@
       <Button @click="handleDangerAlert" class="mr-2">
         Danger alert
       </Button>
+      <Button @click="handleClosableInside" class="mr-2">
+        Close from inside
+      </Button>
       <Button @click="handleSignIn">
         Sign in form
       </Button>
@@ -22,6 +25,7 @@ import ModalRoot from './components/ModalRoot'
 import Button from './components/common/Button'
 import SignInForm from './components/examples/SignInForm'
 import Alert from './components/examples/Alert';
+import ClosableInside from './components/examples/ClosableInside';
 
 export default {
   name: 'app',
@@ -38,6 +42,9 @@ export default {
     },
     handleSignIn () {
       ModalBus.$emit('open', { component: SignInForm, title: 'New group' })
+    },
+    handleClosableInside () {
+      ModalBus.$emit('open', { component: ClosableInside, title: 'Close dialog from component' })
     },
     handleDangerAlert () {
       const props = {
