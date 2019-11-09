@@ -1,5 +1,7 @@
 # modal-demo
 
+A demo project to show Modal window management in Vue.js using EventBus
+
 ## Project setup
 ```
 npm install
