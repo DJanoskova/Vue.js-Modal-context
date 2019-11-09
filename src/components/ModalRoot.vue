@@ -1,5 +1,5 @@
 <template>
-  <Modal :isOpen="!!component" :title="title" @onClose="handleOutsideClick">
+  <Modal :isOpen="!!component" :title="title" @onClose="handleModalClose">
     <component :is="component" @onClose="handleClose" v-bind="props" />
   </Modal>
 </template>
@@ -31,8 +31,8 @@ export default {
     document.removeEventListener('keyup', this.handleKeyup)
   },
   methods: {
-    handleOutsideClick () {
-      if (!this.closeOnClick) return
+    handleModalClose (force = false) {
+      if (!this.closeOnClick && !force) return
       this.handleClose()
     },
     handleClose () {
@@ -42,6 +42,6 @@ export default {
       if (e.keyCode === 27) this.handleClose()
     }
   },
-  components: { Modal },
+  components: { Modal }
 }
 </script>

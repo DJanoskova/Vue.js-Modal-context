@@ -10,7 +10,7 @@
       <Button @click="openClosableInside" class="mr-2">
         Close from inside
       </Button>
-      <Button @click="openSignIn">
+      <Button @click="openSignIn" v-tooltip.bottom="'Cannot be closed by clicking outside'">
         Sign in form
       </Button>
     </div>
