@@ -3,6 +3,7 @@
 A demo project to show Modal window management in Vue.js using EventBus
 
 Article: https://medium.com/@danajanoskova/vue-js-manage-your-modal-window-s-effortlessly-using-eventbus-518977195eed
+
 Demo app: https://vue-modal-context.netlify.com/
 
 ## Project setup
