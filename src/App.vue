@@ -13,6 +13,9 @@
       <Button @click="openSignIn" v-tooltip.bottom="'Cannot be closed by clicking outside'">
         Sign in form
       </Button>
+      <Button @click="openFadeOff" class="ml-2" v-tooltip.bottom="'Open modal without fade effect'">
+        Sign in form with optional modal type
+      </Button>
     </div>
     <ModalRoot />
   </div>
@@ -52,8 +55,11 @@ export default {
     },
     openSignIn () {
       ModalBus.$emit('open', { component: SignInForm, title: 'New user', closeOnClick: false })
+    },
+    openFadeOff () {
+      ModalBus.$emit('open', { modalType: 'SimpleModal', component: SignInForm, title: 'New user', closeOnClick: false })
     }
-  }
+  },
 }
 </script>
 

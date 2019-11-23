@@ -1,13 +1,15 @@
 <template>
-  <Modal :isOpen="!!component" :title="title" @onClose="handleModalClose">
+  <component :is="modalType" :isOpen="!!component" :title="title" @onClose="handleModalClose">
     <component :is="component" @onClose="handleClose" v-bind="props" />
-  </Modal>
+  </component>
 </template>
 
 <script>
 import { ModalBus } from '../eventBus'
+import FadeInModal from './common/modals/FadeInModal'
+import SimpleModal from './common/modals/SimpleModal'
 
-import Modal from './common/Modal'
+const defaultModal = 'FadeInModal';
 
 export default {
   data () {
@@ -15,11 +17,13 @@ export default {
       component: null,
       title: '',
       props: null,
-      closeOnClick: true
+      closeOnClick: true,
+      modalType: defaultModal
     }
   },
   created () {
-    ModalBus.$on('open', ({ component, title = '', props = null, closeOnClick = true }) => {
+    ModalBus.$on('open', ({ modalType, component, title = '', props = null, closeOnClick = true }) => {
+      this.modalType = modalType || defaultModal
       this.component = component
       this.title = title
       this.props = props
@@ -42,6 +46,9 @@ export default {
       if (e.keyCode === 27) this.handleClose()
     }
   },
-  components: { Modal }
+  components: { 
+    SimpleModal,
+    FadeInModal   
+  }
 }
 </script>
