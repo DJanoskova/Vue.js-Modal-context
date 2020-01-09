@@ -1,30 +1,28 @@
 <template>
-  <transition name="fade">
-    <div class="modal-backdrop"
-      v-show="isOpen"
-      :class="{open: isOpen}"
-      @click="$emit('onClose')">
-
-      <div class="modal-dialog" :class="{open: isOpen}" @click.stop>
-        <button class="modal-close" @click="$emit('onClose', true)">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-            <path d="M0 0h24v24H0z" fill="none" />
-          </svg>
-        </button>
-        <div class="modal-title" v-if="title">{{ title }}</div>
-        <div class="modal-body">
-          <slot />
-        </div>
+  <div class="modal-backdrop"
+    v-show="isOpen"
+    :class="{open: isOpen}"
+    @click="$emit('onClose')"
+  >
+    <div class="modal-dialog" :class="{open: isOpen}" @click.stop>
+      <button class="modal-close" @click="$emit('onClose', true)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+          <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+      </button>
+      <div class="modal-title" v-if="title">{{ title }}</div>
+      <div class="modal-body">
+        <slot />
       </div>
-
     </div>
-  </transition>
+  </div>
 </template>
 
 <script>
 export default {
+  name: "SimpleModal",
   props: {
     isOpen: Boolean,
     title: String
@@ -33,18 +31,6 @@ export default {
 </script>
 
 <style scoped>
-.fade-enter-active, .fade-leave-active {
-  transition: 0.5s;
-}
-
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-
-.fade-enter .modal-dialog, .fade-leave-to .modal-dialog {
-  transform: translateY(-20%);
-}
-
 .modal-backdrop {
   background: rgba(250, 250, 250, 0.8);
   position: fixed;
